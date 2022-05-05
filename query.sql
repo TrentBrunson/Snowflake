@@ -93,3 +93,7 @@ SHOW TABLES;
 SELECT * FROM TABLE(result_scan('**********************************'))
 AS x
 WHERE x."rows">500000;    
+
+SELECT * FROM TABLE(result_scan('01a4123d-0000-06fa-0000-00000fd12ab5'))
+AS x
+WHERE x."rows">500000;    
