@@ -61,18 +61,6 @@ set city='Windsor';
 
 SELECT $city;
 
-
-
-
-WITH approx_businesses AS (
-
-
-
-
-
-
-
-
 with businesses_place
         (business_id, name, city, state)
     as
