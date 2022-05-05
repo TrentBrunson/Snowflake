@@ -85,6 +85,7 @@ SELECT DISTINCT name, frequency from flattened fl JOIN businesses bu WHERE fl.bu
 
 // Getting results back from the cache (accessible to executing user for 24 hours)
 SELECT * FROM TABLE(result_scan('*********************************'));
+SELECT * FROM TABLE(result_scan('01a4123c-0000-06ff-0000-00000fd11ac9'));
 
 // Querying ouput of commands
 SHOW TABLES;
