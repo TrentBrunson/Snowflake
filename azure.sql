@@ -24,3 +24,20 @@ alter pipe reviews_pipe refresh;
     
 select *
 from table(information_schema.copy_history(table_name=>'reviews', start_time=> dateadd(hours, -1, current_timestamp())));
+
+
+
+-- data out
+
+Use Reviews;
+
+COPY INTO @azuredatalake/dataexports/topbusiness.parquet
+FROM (SELECT * FROM top_businesses LIMIT 100)
+FILE_FORMAT=(type=parquet) SINGLE=TRUE;
+
+COPY INTO @azuredatalake/dataexports/topbusiness.csv
+FROM (SELECT * FROM top_businesses LIMIT 100)
+FILE_FORMAT=(TYPE=csv COMPRESSION = NONE) SINGLE=TRUE HEADER=TRUE;
+                    
+                    
+list @azuredatalake/dataexports/;
