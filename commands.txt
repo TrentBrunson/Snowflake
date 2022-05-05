@@ -1,0 +1,31 @@
+use Reviews;
+select * from businesses limit 5;
+!source .\Documents\Snowflake\m3\CREATE TABLE SNOWSQL.txt
+!source .\Documents\Training\Snowflake\03\demos\m3\CREATE TABLE SNOWSQL.txt
+
+!define cityName='Las Vegas'
+!set variable_substitution=true
+select * from top_businesses where city='&cityName';
+!set variable_substitution=false
+select * from top_businesses where city='&cityName';
+!define partialName='Las '
+!set variable_substitution=true
+select * from top_businesses where city='&{partialName}Vegas';
+!variables
+!spool .\.snowsql\results.txt
+select * from businesses limit 5;
+!spool off
+!set output_format=csv
+!set header=false
+!set timing=false
+!spool .\.snowsql\results.csv
+select * from businesses limit 5;
+!spool off
+!queries session
+!result ***************
+!quit
+
+
+
+snowsql.exe -f .\Documents\Training\Snowflake\03\demos\m3\SimpleQuery.txt -o output_file=.\.snowsql\output.csv -o quiet=true -o friendly=false -o header=false -o output_format=csv
+
